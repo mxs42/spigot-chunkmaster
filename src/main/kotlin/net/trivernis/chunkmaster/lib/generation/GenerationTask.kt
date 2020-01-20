@@ -52,7 +52,11 @@ abstract class GenerationTask(plugin: Chunkmaster, centerChunk: ChunkCoordinates
      * Checks if the World border or the maximum chunk setting for the task is reached.
      */
     protected fun borderReached(): Boolean {
-        return !world.worldBorder.isInside(lastChunkCoords.getCenterLocation(world)) || (stopAfter in 1..count)
+        return if (stopAfter != -1) {
+            count >= stopAfter
+        } else {
+            world.worldBorder.isInside(lastChunkCoords.getCenterLocation(world)) || (stopAfter in 1..count)
+        }
     }
 
     /**
