@@ -35,7 +35,7 @@ class CmdGenerate(private val chunkmaster: Chunkmaster): Subcommand {
         }
         return emptyList<String>().toMutableList()
     }
-    val units = listOf("blockradius", "radius", "diameter")
+    val units = listOf("blockradius", "blockdiameter", "radius", "diameter")
 
 
     /**
@@ -101,6 +101,9 @@ class CmdGenerate(private val chunkmaster: Chunkmaster): Subcommand {
                 }
                 "blockradius" -> {
                     ((number.toDouble()+1)/8).pow(2.0).toInt()
+                }
+                "blockdiameter" -> {
+                    (number.toDouble() / 16).pow(2.0).toInt()
                 }
                 else -> number
             }
